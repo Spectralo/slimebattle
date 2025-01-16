@@ -1,0 +1,110 @@
+[gd_scene load_steps=4 format=3 uid="uid://bktpcjnf2wnge"]
+
+[ext_resource type="Theme" uid="uid://dmxniyuuo535m" path="res://assets/fonts/bigtext.tres" id="1_lmcrx"]
+[ext_resource type="Script" path="res://scenes/local_mode_chooser.gd" id="1_rq025"]
+[ext_resource type="Theme" uid="uid://5fee6dwua0yd" path="res://assets/button.tres" id="2_d4pfj"]
+
+[node name="LocalModeChooser" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rq025")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 625.0
+offset_bottom = 223.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="backtomain" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_d4pfj")
+theme_override_font_sizes/font_size = 16
+text = "Back"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_lmcrx")
+theme_override_font_sizes/font_size = 32
+text = "Choose the game mode"
+
+[node name="DuosContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/DuosContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DuosContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/DuosContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_lmcrx")
+theme_override_font_sizes/font_size = 32
+text = "Duos"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/DuosContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Duos" type="Button" parent="MarginContainer/VBoxContainer/DuosContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_d4pfj")
+text = "Play"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/DuosContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_lmcrx")
+theme_override_font_sizes/font_size = 16
+text = "A fast paced mode for 2 players only."
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_lmcrx")
+theme_override_font_sizes/font_size = 32
+text = "Another mode"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_d4pfj")
+text = "Play"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_lmcrx")
+theme_override_font_sizes/font_size = 16
+text = "Look this is so coooool"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer3/backtomain" to="." method="_on_backtomain_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/DuosContainer/VBoxContainer/HBoxContainer/Duos" to="." method="_on_duos_pressed"]

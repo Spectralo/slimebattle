@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckg2fsigqhsc0"]
+
+[ext_resource type="Theme" uid="uid://dmxniyuuo535m" path="res://assets/fonts/bigtext.tres" id="1_s2y5q"]
+
+[node name="hud" type="CanvasLayer"]
+
+[node name="RoundCount" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="RoundCount"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 5.0
+offset_right = 109.0
+offset_bottom = 35.0
+grow_vertical = 0
+theme = ExtResource("1_s2y5q")
+theme_override_font_sizes/font_size = 32
+text = "in the lobby"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -35.0
+offset_right = 30.0
+offset_bottom = -5.0
+grow_vertical = 0
+theme = ExtResource("1_s2y5q")
+theme_override_font_sizes/font_size = 32
+text = "00:00"
+horizontal_alignment = 2

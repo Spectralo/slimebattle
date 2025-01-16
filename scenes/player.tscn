@@ -1,0 +1,225 @@
+[gd_scene load_steps=22 format=3 uid="uid://cxfnvawfvhrd7"]
+
+[ext_resource type="Texture2D" uid="uid://ckokn1tbtylf0" path="res://scenes/slime.png" id="1_oume5"]
+[ext_resource type="Script" path="res://script/player.gd" id="1_yo64q"]
+[ext_resource type="Shader" path="res://assets/shaders/color.gdshader" id="2_bh3ha"]
+[ext_resource type="PackedScene" uid="uid://ckg2fsigqhsc0" path="res://scenes/hud.tscn" id="4_q3fok"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vextw"]
+shader = ExtResource("2_bh3ha")
+shader_parameter/color1 = Vector3(0.086, 0.353, 0.298)
+shader_parameter/color2 = Vector3(0.137, 0.565, 0.388)
+shader_parameter/color3 = Vector3(0.118, 0.737, 0.451)
+shader_parameter/color4 = Vector3(0.569, 0.859, 0.412)
+shader_parameter/replace1 = Vector3(0.431, 0.153, 0.153)
+shader_parameter/replace2 = Vector3(0.702, 0.22, 0.192)
+shader_parameter/replace3 = Vector3(0.918, 0.31, 0.212)
+shader_parameter/replace4 = Vector3(0.961, 0.49, 0.29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhd77"]
+atlas = ExtResource("1_oume5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2atm5"]
+atlas = ExtResource("1_oume5")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tk53v"]
+atlas = ExtResource("1_oume5")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2rmo"]
+atlas = ExtResource("1_oume5")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yenn6"]
+atlas = ExtResource("1_oume5")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6202k"]
+atlas = ExtResource("1_oume5")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qho4n"]
+atlas = ExtResource("1_oume5")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06m42"]
+atlas = ExtResource("1_oume5")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uordb"]
+atlas = ExtResource("1_oume5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jfrj"]
+atlas = ExtResource("1_oume5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuq1l"]
+atlas = ExtResource("1_oume5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3b8d"]
+atlas = ExtResource("1_oume5")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2flf"]
+atlas = ExtResource("1_oume5")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jm8qk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhd77")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_2atm5")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_tk53v")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_c2rmo")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_yenn6")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_6202k")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_qho4n")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_06m42")
+}],
+"loop": true,
+"name": &"dying",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhd77")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_uordb")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_7jfrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhd77")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuq1l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhd77")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_p3b8d")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_a2flf")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_nhd77")
+}],
+"loop": false,
+"name": &"jumpingend",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_nhd77")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_a2flf")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_p3b8d")
+}],
+"loop": false,
+"name": &"jumpingstart",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuq1l")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6di1d"]
+radius = 24.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_iqj5e"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimatedSprite2D:frame")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite2D:flip_h")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:color")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("AnimatedSprite2D:animation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_yo64q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vextw")
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_jm8qk")
+animation = &"jumpingend"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"should_round_fps": true,
+"slice": "",
+"source": "res://assets/aseprite/slime.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "2f0696866ab257bdbf882466e2397715"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6di1d")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collide_with_areas = true
+
+[node name="hud" parent="RayCast2D" instance=ExtResource("4_q3fok")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_iqj5e")

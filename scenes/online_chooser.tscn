@@ -1,0 +1,263 @@
+[gd_scene load_steps=9 format=4 uid="uid://dq0pre7ulvrsy"]
+
+[ext_resource type="PackedScene" uid="uid://krhey50hfeay" path="res://scenes/backgroundtile.tscn" id="1_2qh6t"]
+[ext_resource type="Theme" uid="uid://5fee6dwua0yd" path="res://assets/button.tres" id="1_dgnr8"]
+[ext_resource type="Script" path="res://scenes/online_chooser.gd" id="1_hgf7a"]
+[ext_resource type="Theme" uid="uid://dmxniyuuo535m" path="res://assets/fonts/bigtext.tres" id="3_qu1de"]
+[ext_resource type="PackedScene" uid="uid://di5rusy1jm53f" path="res://scenes/server_card.tscn" id="4_dk63w"]
+
+[sub_resource type="Animation" id="Animation_jjcfl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AddServer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AddServer:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Basic:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_40kym"]
+resource_name = "slide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AddServer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 1),
+"transitions": PackedFloat32Array(1, -2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AddServer:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.666667, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 1,
+"values": [2, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Basic:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1000, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b3o5g"]
+_data = {
+"RESET": SubResource("Animation_jjcfl"),
+"slide": SubResource("Animation_40kym")
+}
+
+[node name="online_chooser" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hgf7a")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = 548.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Background" parent="Control2" instance=ExtResource("1_2qh6t")]
+position = Vector2(-600, -400)
+scale = Vector2(6, 6)
+tile_map_data = PackedByteArray("AAADAAIAAQADAAAAAAACAAIAAQADAAAAAAABAAIAAQADAAAAAAAAAAIAAQADAAAAAAD//wIAAQADAAAAAAAEAAIAAQADAAAAAAACAAEAAQADAAEAAAABAAEAAQACAAIAAAADAAEAAQAAAAIAABAAAAEAAQACAAMAABD//wEAAQAAAAMAAAAFAAIAAQADAAAAAAAGAAIAAQADAAAAAAAHAAIAAQADAAAAAAAIAAIAAQADAAAAAAAJAAIAAQADAAAAAAAFAAEAAQABAAIAAAAJAAEAAQABAAMAAAAIAAEAAQAAAAMAAAAHAAEAAQAAAAMAAAAGAAEAAQACAAMAAAAEAAEAAQABAAAAAAA=")
+
+[node name="AddServer" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="AddServer"]
+layout_mode = 0
+offset_right = 398.0
+offset_bottom = 223.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AddServer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="AddServer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="backtobasic" type="Button" parent="AddServer/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_dgnr8")
+theme_override_font_sizes/font_size = 16
+text = "Back"
+
+[node name="Label3" type="Label" parent="AddServer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_qu1de")
+text = "Server's details :"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AddServer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="AddServer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_qu1de")
+text = "IP"
+
+[node name="IP" type="LineEdit" parent="AddServer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_dgnr8")
+
+[node name="MarginContainer" type="MarginContainer" parent="AddServer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="Label2" type="Label" parent="AddServer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_qu1de")
+text = "Port"
+
+[node name="PORT" type="LineEdit" parent="AddServer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_dgnr8")
+placeholder_text = "3000"
+
+[node name="AddToList" type="Button" parent="AddServer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_dgnr8")
+text = "Add"
+
+[node name="Basic" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Basic"]
+layout_mode = 0
+offset_right = 473.0
+offset_bottom = 223.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Basic/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="Basic/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="backtomain" type="Button" parent="Basic/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_dgnr8")
+theme_override_font_sizes/font_size = 16
+text = "Back"
+
+[node name="official" type="Label" parent="Basic/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_qu1de")
+text = "Official servers"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Basic/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+
+[node name="ServerCard" parent="Basic/MarginContainer/VBoxContainer/MarginContainer2" instance=ExtResource("4_dk63w")]
+layout_mode = 2
+text = "Hacklub Server"
+
+[node name="custom" type="Label" parent="Basic/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_qu1de")
+text = "Your servers"
+
+[node name="MarginContainer" type="MarginContainer" parent="Basic/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Basic/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(500, 130)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Basic/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="Add" type="Button" parent="Basic/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_dgnr8")
+text = "Add a custom 	server"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b3o5g")
+}
+
+[connection signal="pressed" from="AddServer/MarginContainer/VBoxContainer/MarginContainer3/backtobasic" to="." method="_on_backtobasic_pressed"]
+[connection signal="pressed" from="AddServer/MarginContainer/VBoxContainer/AddToList" to="." method="_on_add_to_list_pressed"]
+[connection signal="pressed" from="Basic/MarginContainer/VBoxContainer/MarginContainer3/backtomain" to="." method="_on_backtomain_pressed"]
+[connection signal="pressed" from="Basic/MarginContainer/VBoxContainer/Add" to="." method="_on_add_pressed"]

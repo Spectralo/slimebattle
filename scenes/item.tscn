@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqnxtt7qojc2d"]
+
+[ext_resource type="Theme" uid="uid://dmxniyuuo535m" path="res://assets/fonts/bigtext.tres" id="1_la7gi"]
+[ext_resource type="Script" path="res://scenes/item.gd" id="1_v6dak"]
+[ext_resource type="Theme" uid="uid://5fee6dwua0yd" path="res://assets/button.tres" id="2_4dw7g"]
+
+[node name="MarginContainer" type="MarginContainer"]
+theme_override_constants/margin_left = 10
+script = ExtResource("1_v6dak")
+
+[node name="Item" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Item"]
+layout_mode = 2
+theme = ExtResource("1_la7gi")
+text = "Spectralo's game"
+
+[node name="Spacer" type="Control" parent="Item"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="Item"]
+layout_mode = 2
+theme = ExtResource("2_4dw7g")
+text = "Join"

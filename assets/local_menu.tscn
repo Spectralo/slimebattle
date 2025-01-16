@@ -1,0 +1,305 @@
+[gd_scene load_steps=11 format=4 uid="uid://bqw7q2anqslw8"]
+
+[ext_resource type="Theme" uid="uid://dmxniyuuo535m" path="res://assets/fonts/bigtext.tres" id="1_2b318"]
+[ext_resource type="Script" path="res://assets/local_menu.gd" id="1_5lpmn"]
+[ext_resource type="Theme" uid="uid://5fee6dwua0yd" path="res://assets/button.tres" id="2_3rds7"]
+[ext_resource type="Script" path="res://script/servercreate.gd" id="2_ft0mf"]
+[ext_resource type="PackedScene" uid="uid://krhey50hfeay" path="res://scenes/backgroundtile.tscn" id="3_trhw5"]
+[ext_resource type="FontFile" uid="uid://gfa5drguli8s" path="res://assets/fonts/ThaleahFat.ttf" id="4_rme38"]
+[ext_resource type="Script" path="res://script/joinserver.gd" id="6_hjpj7"]
+
+[sub_resource type="Animation" id="Animation_gwcua"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Join:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Create:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Create:mouse_filter")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_qpv68"]
+resource_name = "slide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Join:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1000, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Create:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.533333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Create:mouse_filter")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.733333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vv6sd"]
+_data = {
+"RESET": SubResource("Animation_gwcua"),
+"slide": SubResource("Animation_qpv68")
+}
+
+[node name="DuosLocalMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5lpmn")
+
+[node name="Create" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_ft0mf")
+
+[node name="MarginContainer" type="MarginContainer" parent="Create"]
+layout_mode = 0
+offset_right = 625.0
+offset_bottom = 223.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Create/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="Create/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="back" type="Button" parent="Create/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_3rds7")
+theme_override_font_sizes/font_size = 16
+text = "Back"
+
+[node name="Label" type="Label" parent="Create/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_2b318")
+theme_override_font_sizes/font_size = 32
+text = "Host a game"
+
+[node name="MarginContainer" type="MarginContainer" parent="Create/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Create/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Create/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_2b318")
+text = "Port"
+
+[node name="MarginContainer" type="MarginContainer" parent="Create/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="LineEdit" type="LineEdit" parent="Create/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_3rds7")
+theme_override_fonts/font = ExtResource("4_rme38")
+text = "3333"
+
+[node name="Label2" type="Label" parent="Create/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_2b318")
+text = "modify it to make your server private"
+
+[node name="MarginContainer4" type="MarginContainer" parent="Create/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Create/MarginContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Create/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_2b318")
+text = "Name"
+
+[node name="MarginContainer" type="MarginContainer" parent="Create/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 200
+
+[node name="Name" type="LineEdit" parent="Create/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_3rds7")
+theme_override_fonts/font = ExtResource("4_rme38")
+text = "a server"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Create/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+
+[node name="Launch" type="Button" parent="Create/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("2_3rds7")
+text = "Start game"
+
+[node name="Join" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_hjpj7")
+
+[node name="MarginContainer" type="MarginContainer" parent="Join"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 585.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Join/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="Join/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="backtomode" type="Button" parent="Join/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_3rds7")
+theme_override_font_sizes/font_size = 16
+text = "Back"
+
+[node name="Label" type="Label" parent="Join/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_2b318")
+theme_override_font_sizes/font_size = 32
+text = "Duos | Local"
+
+[node name="MarginContainer" type="MarginContainer" parent="Join/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 350
+theme_override_constants/margin_bottom = 10
+
+[node name="Create" type="Button" parent="Join/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_3rds7")
+text = "Create a game"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Join/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Join/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_2b318")
+text = "duos Games on your local network:"
+
+[node name="MarginContainer" type="MarginContainer" parent="Join/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Refresh" type="Button" parent="Join/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_3rds7")
+text = "Refresh"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vv6sd")
+}
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = 548.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Background" parent="Control2" instance=ExtResource("3_trhw5")]
+position = Vector2(-600, -400)
+scale = Vector2(6, 6)
+tile_map_data = PackedByteArray("AAADAAIAAQADAAAAAAACAAIAAQADAAAAAAABAAIAAQADAAAAAAAAAAIAAQADAAAAAAD//wIAAQADAAAAAAAEAAIAAQADAAAAAAACAAEAAQADAAEAAAABAAEAAQACAAIAAAADAAEAAQAAAAIAABAAAAEAAQACAAMAABD//wEAAQAAAAMAAAAFAAIAAQADAAAAAAAGAAIAAQADAAAAAAAHAAIAAQADAAAAAAAIAAIAAQADAAAAAAAJAAIAAQADAAAAAAAFAAEAAQABAAIAAAAJAAEAAQABAAMAAAAIAAEAAQAAAAMAAAAHAAEAAQAAAAMAAAAGAAEAAQACAAMAAAAEAAEAAQABAAAAAAA=")
+
+[connection signal="pressed" from="Create/MarginContainer/VBoxContainer/MarginContainer3/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Create/MarginContainer/VBoxContainer/MarginContainer2/Launch" to="Create" method="_on_launch_pressed"]
+[connection signal="pressed" from="Join/MarginContainer/VBoxContainer/MarginContainer3/backtomode" to="." method="_on_backtomode_pressed"]
+[connection signal="pressed" from="Join/MarginContainer/VBoxContainer/MarginContainer/Create" to="." method="_on_create_pressed"]

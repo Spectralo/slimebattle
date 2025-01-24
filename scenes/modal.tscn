@@ -1,0 +1,163 @@
+[gd_scene load_steps=8 format=3 uid="uid://trkj76x52mep"]
+
+[ext_resource type="Theme" uid="uid://dmxniyuuo535m" path="res://assets/fonts/bigtext.tres" id="1_c2yp3"]
+[ext_resource type="Script" path="res://scenes/modal.gd" id="1_nb5xg"]
+[ext_resource type="Theme" uid="uid://5fee6dwua0yd" path="res://assets/button.tres" id="3_d2r6k"]
+
+[sub_resource type="Animation" id="Animation_6l4ko"]
+resource_name = "slide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.766667),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(-300, 160), Vector2(300, 160)]
+}
+
+[sub_resource type="Animation" id="Animation_s5eie"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-300, 160)]
+}
+
+[sub_resource type="Animation" id="Animation_lvvwg"]
+resource_name = "slideout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(300, 160), Vector2(1000, 160)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3b6e7"]
+_data = {
+"RESET": SubResource("Animation_s5eie"),
+"slide": SubResource("Animation_6l4ko"),
+"slideout": SubResource("Animation_lvvwg")
+}
+
+[node name="ErrorModal" type="CanvasLayer"]
+script = ExtResource("1_nb5xg")
+Error = "There's something wrong but i don't really know what ..."
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -40.0
+offset_right = 232.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0.909804, 0.231373, 0.231373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_3b6e7")
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -35.0
+offset_right = 232.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0.180392, 0.133333, 0.184314, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -231.5
+offset_top = -16.0
+offset_right = 231.5
+offset_bottom = 65.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Error" type="Label" parent="Control/MarginContainer/VBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_c2yp3")
+text = "Error"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="Explanation" type="Label" parent="Control/MarginContainer/VBoxContainer2/MarginContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(329.67, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_c2yp3")
+text = "Something strange happenned ..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Control/MarginContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_d2r6k")
+text = "ok"
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_button_pressed"]

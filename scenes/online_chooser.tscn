@@ -177,6 +177,7 @@ text = "Port"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_dgnr8")
+text = "3000"
 placeholder_text = "3000"
 
 [node name="AddToList" type="Button" parent="AddServer/MarginContainer/VBoxContainer"]
@@ -193,8 +194,8 @@ offset_bottom = 40.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Basic"]
 layout_mode = 0
-offset_right = 473.0
-offset_bottom = 223.0
+offset_right = 700.0
+offset_bottom = 393.0
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 120
@@ -226,6 +227,7 @@ theme_override_constants/margin_left = 30
 [node name="ServerCard" parent="Basic/MarginContainer/VBoxContainer/MarginContainer2" instance=ExtResource("4_dk63w")]
 layout_mode = 2
 text = "Hacklub Server"
+canBeRemoved = false
 
 [node name="custom" type="Label" parent="Basic/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -236,16 +238,17 @@ text = "Your servers"
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 30
 theme_override_constants/margin_bottom = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Basic/MarginContainer/VBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(500, 130)
+custom_minimum_size = Vector2(504.33, 141.77)
 layout_mode = 2
 size_flags_vertical = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Basic/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Add" type="Button" parent="Basic/MarginContainer/VBoxContainer"]
 layout_mode = 2

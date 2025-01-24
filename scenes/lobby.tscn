@@ -31,4 +31,4 @@ spawn_path = NodePath("../Spawner")
 position = Vector2(217, 291)
 
 [node name="player" parent="." instance=ExtResource("4_yuxsh")]
-color = "red"
+color = "green"

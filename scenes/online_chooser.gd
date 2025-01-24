@@ -13,6 +13,7 @@ func _on_add_pressed():
 
 func _on_backtobasic_pressed():
 	$AnimationPlayer.play_backwards("slide")
+	refreshServers()
 
 func refreshServers():
 	var config = ConfigFile.new()
@@ -21,25 +22,26 @@ func refreshServers():
 	if err != OK:
 		return
 	for server in config.get_sections():
-		var newServerCard = serverCard.instantiate()
-		var text = ""
-		for key in config.get_section_keys(server):
-			if key.is_valid_int():
-				pass
-			else:
-				if text != "":
-					text = text + str(config.get_value(server,key)) + ":"
-				else:
-					text = text + str(config.get_value(server,key)) + ":"
-		newServerCard.text = text
-		$Basic/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer.add_child(newServerCard)
-		
-
+		if not server == "basic":
+			var newServerCard = serverCard.instantiate()
+			var ip = config.get_value(server,"ip")
+			var port = config.get_value(server,"port")
+			var number = config.get_value(server,"number")
+			newServerCard.ip = ip
+			newServerCard.port = port
+			newServerCard.number = number
+			newServerCard.text = str(ip)+":"+str(port)
+			$Basic/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer.add_child(newServerCard)
 
 func _on_add_to_list_pressed():
 	var ip = $AddServer/MarginContainer/VBoxContainer/HBoxContainer/IP.text
 	var port = $AddServer/MarginContainer/VBoxContainer/HBoxContainer/PORT.text
-	addServer(port,ip)
+	if is_valid_port(port) and is_valid_ip(ip):
+		addServer(port,ip)
+	else:
+		var error_scene = load("res://scenes/modal.tscn").instantiate()
+		error_scene.Error = "Enter a valid ip or port !"
+		get_tree().root.add_child(error_scene)
 	
 func addServer(port,ip):
 	var config = ConfigFile.new()
@@ -50,8 +52,17 @@ func addServer(port,ip):
 	config.set_value("server"+str(servercount+1),"port",port)
 	config.set_value("server"+str(servercount+1),"number",servercount+1)
 	config.set_value("basic","servercount",servercount+1)
-	print("ADDED SERVER"+str(servercount)+" with "+str(ip,port))
 	config.save("user://server_config.ini")
 	refreshServers()
 	$AnimationPlayer.play_backwards("slide")
+	
+func is_valid_ip(ip: String) -> bool:
+	var ip_regex = RegEx.new()
+	ip_regex.compile(r"^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])$")
+	return ip_regex.search(ip) != null or ip == ""
+
+func is_valid_port(port: String) -> bool:
+	var port_regex = RegEx.new()
+	port_regex.compile(r"^(6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4})$")
+	return port_regex.search(port) != null
 	

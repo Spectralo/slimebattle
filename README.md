@@ -8,7 +8,7 @@ Slime battle is a Work In Progress game that I developed during HighSeas's hackc
 ## How to play
 
 - Clone the repository
-- Run the .godot file or import the folder via Godot
+- Run the .godot file or import the folder via Godot \
 _Note: You need to use Godot 4!_
 
 ## Tools used

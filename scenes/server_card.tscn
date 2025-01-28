@@ -1,21 +1,109 @@
-[gd_scene load_steps=5 format=3 uid="uid://di5rusy1jm53f"]
+[gd_scene load_steps=8 format=3 uid="uid://di5rusy1jm53f"]
 
 [ext_resource type="Theme" uid="uid://dmxniyuuo535m" path="res://assets/fonts/bigtext.tres" id="1_o0kxv"]
 [ext_resource type="Script" path="res://scenes/server_card.gd" id="1_sc3ny"]
 [ext_resource type="Theme" uid="uid://5fee6dwua0yd" path="res://assets/button.tres" id="2_rdeap"]
 [ext_resource type="Texture2D" uid="uid://dsi5xo4bsnjr1" path="res://assets/delete.png" id="4_2va4d"]
 
+[sub_resource type="Animation" id="Animation_xkyww"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d5idb"]
+resource_name = "disapear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.4),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.433333, 0.733333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xl614"]
+_data = {
+"RESET": SubResource("Animation_xkyww"),
+"disapear": SubResource("Animation_d5idb")
+}
+
 [node name="MarginContainer" type="MarginContainer"]
-offset_right = 128.0
-offset_bottom = 27.0
-size_flags_horizontal = 3
+offset_right = 156.0
+offset_bottom = 28.0
+size_flags_horizontal = 15
+size_flags_vertical = 13
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_bottom = 2
 script = ExtResource("1_sc3ny")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
+clip_contents = true
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 13
+size_flags_vertical = 13
+size_flags_stretch_ratio = 0.5
 
 [node name="Label" type="Label" parent="HBoxContainer2"]
 layout_mode = 2
@@ -36,4 +124,11 @@ layout_mode = 2
 theme = ExtResource("2_rdeap")
 text = "Join"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xl614")
+}
+
 [connection signal="pressed" from="HBoxContainer2/Delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Button" to="." method="_on_button_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

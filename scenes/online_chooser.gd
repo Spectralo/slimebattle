@@ -13,6 +13,8 @@ func _on_add_pressed():
 
 func _on_backtobasic_pressed():
 	$AnimationPlayer.play_backwards("slide")
+	for each in $Basic/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer.get_children():
+		each.queue_free()
 	refreshServers()
 
 func refreshServers():
